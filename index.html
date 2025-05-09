@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HS본부 시스템 맵</title>
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --hover-color: #2980b9;
+            --text-color: #333;
+            --light-bg: #f8f9fa;
+            --border-radius: 12px;
+            --shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+		
+		/* 폰트 추가 */
+		.custom-font {
+        font-family: 'LG스마트체 Regular', 'Arial Narrow', sans-serif;
+		}
+		.korean {
+        font-family: 'LG스마트체 Regular', sans-serif; /* 한글에 LG스마트체 사용 */
+		}
+		.english {
+        font-family: 'Arial Narrow', sans-serif; /* 영문에 Arial Narrow 사용 */
+		}
+
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: LG스마트체 Regular, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light-bg);
+            color: var(--text-color);
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #7f8c8d;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .system-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .system-button {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            padding: 25px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            overflow: hidden;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+			
+			text-align: center;
+        }
+
+        .system-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);			
+        }
+
+        .system-image {
+            border-radius: 4px; /* 8 → 4로 변경함 */
+            object-fit: cover;
+            margin-bottom: 15px;
+			margin-right: 8px; /* 이미지와 텍스트 사이의 간격 조정 */
+        }
+
+        .system-title {
+            font-size: 1.4rem;
+            /*margin-bottom: 1px;*/ /* 박스 내 시스템 제목과 아래 설명 사이 간격 */
+            font-weight: 600;
+            color: #2c3e50;
+			
+			display: flex; /* 플렉스 박스를 사용하여 정렬 */
+			justify-content: center; /* 가로축 가운데 정렬 */
+        }
+
+        .system-description {
+            font-size: 0.95rem;
+            color: #7f8c8d;
+            line-height: 1.5;
+			margin-bottom: 6px; /* 텍스트와 아래 박스 사이 간격 */
+        }
+		
+		
+		
+		.sub_title {
+		font-size: 1.5rem; /* 원하는 크기로 조정 */
+		text-align: left; /* 좌측 정렬 */
+		margin: 0; /* 기본 마진 제거 */
+		margin-bottom: 10px; /* 텍스트와 아래 박스 사이 간격 */
+		margin-top: 20px; /* 텍스트와 아래 박스 사이 간격 */
+		}
+		
+        .sub__title {
+            font-size: 1.2rem;
+            color: #7f8c8d;
+			text-align: left; /* 좌측 정렬 */
+            margin: 0 auto;
+        }		
+		
+		.sub___title {
+            font-size: 1.2rem;
+            color: #006400;
+			
+            margin: 0 auto;
+			
+		    display: flex; /* 플렉스 박스를 사용하여 정렬 */
+			justify-content: center; /* 가로축 가운데 정렬 */
+        }	
+
+        .button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+			text-align: right;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        .orange {
+            background-color: orange;
+        }
+		
+        .green {
+            background-color: green;
+        }
+
+        @media (max-width: 768px) {
+            .system-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+            }
+
+            .system-button {
+                padding: 20px;
+            }
+            
+        }
+
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .system-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        } 
+
+        @media (min-width: 1025px) {
+            .system-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>HS본부 시스템 / 대시보드 및 생성형 AI  서비스</h1>
+            <p class="subtitle">각 시스템을 클릭하여 자세한 정보를 확인하세요. <br>모든 시스템은 직관적인 인터페이스로 쉽게 접근할 수 있습니다.</p>
+        </header>
+		
+		<h2 class="sub_title">📈📊 HS본부 데이터 시스템 및 대시보드 링크 📈📊</h2>
+		<h2 class="sub_title">1. 본부 시스템 및 대시보드</h2>
+		
+				
+        <div class="system-grid">
+            <!-- 시스템 1 -->
+            <a href="https://living-dvc.lge.com/dvc" class="system-button" target="_blank" >
+                <h2 class="system-title">                
+					<img src="https://github.com/JuhyupKim/JuhyupKim.github.io/blob/main/icon/Living_DVC.png?raw=true" alt="Living DVC" class="system-image" height="25">
+					리빙 DVC</h2>
+                <p class="system-description">리빙솔루션 사업부 대시보드</p>
+				<button class="button orange">권한 필요</button>
+            </a>
+
+            <!-- 시스템 2 -->
+            <a href="https://dpg.lge.com" class="system-button" target="_blank" >
+                <h2 class="system-title">
+					<img src="https://github.com/JuhyupKim/JuhyupKim.github.io/blob/main/icon/Dash.png?raw=true" alt="Kitchen Solution" class="system-image" height="25">
+					키친 K-DPG</h2>
+                <p class="system-description">키친솔루션 사업부 대시보드</p>
+				<button class="button orange">권한 필요</button>
+            </a>
+
+            <!-- 시스템 3 -->
+            <a href="https://ha-marketing.lge.com" class="system-button" target="_blank" >               
+                <h2 class="system-title">
+					<img src="https://github.com/JuhyupKim/JuhyupKim.github.io/blob/main/icon/Tableau.png?raw=true" alt="HS Marketing" class="system-image" height="25">
+					영업/마케팅 대시보드</h2>
+                <p class="system-description">HS 해외영업그룹 대시보드</p>
+				<button class="button green">권한 OK</button>
+            </a>
+
+            <!-- 시스템 4 -->
+            <a href="https://intellytics-dashboard.lge.com/ha" class="system-button" target="_blank" >                
+                <h2 class="system-title">
+					<img src="https://github.com/JuhyupKim/JuhyupKim.github.io/blob/main/icon/HS_Data_DashBoard2.png?raw=true" alt="HS_Data_DashBoard.png" class="system-image" width="25">
+					HS 데이터대시보드</h2>
+                <p class="system-description">제품/ UP가전/ 앱 서비스 데이터 분석</p>
+				<button class="button orange">권한 필요</button>
+            </a>
+
+            <!-- 시스템 5 -->
+            <a href="http://haqdx.lge.com/" class="system-button" target="_blank" >                
+                <h2 class="system-title">
+					<img src="https://github.com/JuhyupKim/JuhyupKim.github.io/blob/main/icon/Quality1.png?raw=true" alt="품질 대시보드" class="system-image" height="25">
+					품질 대시보드</h2>
+                <p class="system-description">필드 및 부품 품질분석 / 추적</p>
+				<button class="button orange">권한 필요</button>
+            </a>
+
+            <!-- 시스템 6 -->
+            <a href="http://haqdx.lge.com:3838/" class="system-button" target="_blank" >                
+                <h2 class="system-title">
+					<img src="https://github.com/JuhyupKim/JuhyupKim.github.io/blob/main/icon/Quality2.png?raw=true" alt="품질 대시보드" class="system-image" height="25">
+					품질 대시보드</h2>
+                <p class="system-description">시장품질, ILO 품질 분석</p>
+				<button class="button green">권한 OK</button>
+            </a>
+
+            <!-- 시스템 7 -->
+            <a href="http://wr.plas.lge.com/" class="system-button" target="_blank" >                
+                <h2 class="system-title">
+					<img src="https://github.com/JuhyupKim/JuhyupKim.github.io/blob/main/icon/Manufact.png?raw=true" alt="생산 대시보드" class="system-image" height="25">
+					생산 대시보드</h2>
+                <p class="system-description">생산 데이터 (폴란드)</p>
+				<button class="button green">권한 OK</button>
+            </a>
+
+            <!-- 시스템 8 -->
+            <a href="http://165.186.86.70:8000/" class="system-button" target="_blank" >                
+                <h2 class="system-title">
+					<img src="https://github.com/JuhyupKim/JuhyupKim.github.io/blob/main/icon/Tableau.png?raw=true" alt="UP가전 대시보드" class="system-image" height="25">
+					UP가전 대시보드</h2>
+                <p class="system-description">Wi-Fi / ThinQ / LCD 가전 데이터</p>
+				<button class="button orange">권한 필요</button>
+            </a>
+
+            <!-- 시스템 9 -->
+            <a href="http://teamcenter.lge.com" class="system-button" target="_blank" >                
+                <h2 class="system-title">
+					<img src="https://github.com/JuhyupKim/JuhyupKim.github.io/blob/main/icon/METIS.png?raw=true" alt="개발지식 검색" class="system-image" height="25">
+					개발지식 검색</h2>
+                <p class="system-description">설계가이드, PMS문서, 매뉴얼 등</p>
+				<button class="button orange">권한 필요</button>
+            </a>
+			
+			
+        </div>
+
+
+
+
+		<h2 class="sub_title"><br>2. 전사 시스템 및 대시보드</h2>
+		
+		<div class="system-grid">
+            <!-- 시스템 1 -->
+			<a href="https://intellytics-dashboard.lge.com/" class="system-button" target="_blank" >
+                <h2 class="system-title">                
+					<img src="https://github.com/JuhyupKim/JuhyupKim.github.io/blob/main/icon/HS_Data_DashBoard2.png?raw=true" alt="인텔리틱스 대시보드" class="system-image" height="25">
+					인텔리틱스 대시보드</h2>
+                <p class="system-description">빅데이터 분석 시스템</p>
+				<button class="button green">권한 OK</button>
+            </a>
+
+            <!-- 시스템 2 -->
+            <a href="https://ic360.lge.com/" class="system-button" target="_blank" >
+                <h2 class="system-title">
+					<img src="https://github.com/JuhyupKim/JuhyupKim.github.io/blob/main/icon/ic360.png?raw=true" alt="IC360" class="system-image" height="20">
+					IC360</h2>
+                <p class="system-description">전사 고객이해 플랫폼 / DB  구축</p>
+				<button class="button green">권한 OK</button>
+            </a>
+
+            <!-- 시스템 3 -->
+            <a href="https://ic360.lge.com/dashboard/MENU_CXPS/MENU_OVERALL_STATUS" class="system-button" target="_blank" >               
+                <h2 class="system-title">
+					<img src="https://github.com/JuhyupKim/JuhyupKim.github.io/blob/main/icon/ic360.png?raw=true" alt="CXPS" class="system-image" height="20">
+					CX Index Status</h2>
+                <p class="system-description">전사 CX지표 대시보드</p>
+				<button class="button orange">권한 필요</button>
+            </a>
+
+            <!-- 시스템 4 -->
+            <a href="https://intellytics.lge.com/" class="system-button" target="_blank" >                
+                <h2 class="system-title">
+					<img src="https://github.com/JuhyupKim/JuhyupKim.github.io/blob/main/icon/Intellytics.png?raw=true" alt="인텔리틱스 VoC" class="system-image" width="80">
+					인텔리틱스 VoC</h2>
+                <p class="system-description">VoC, IoT, 품질(FFR), CS</p>
+				<button class="button orange">권한 필요</button>
+            </a>
+
+            <!-- 시스템 5 -->
+            <a href="https://eap2.lge.com/" class="system-button" target="_blank" >                
+                <h2 class="system-title">
+					<img src="https://github.com/JuhyupKim/JuhyupKim.github.io/blob/main/icon/EAP.png?raw=true" alt="EAP2.0" class="system-image" height="25">
+					전사 EAP</h2>
+                <p class="system-description">원천 데이터 제공, 분석 환경 지원</p>
+				<button class="button green">권한 OK</button>
+            </a>
+
+			
+        </div>
+		
+		<h2 class="sub_title"><br><br><br>🔮🔮 사내에서 사용 가능한 생성형 AI 서비스 🔮🔮</h2>
+		<h2 class="sub_title">1. 엘지니 AI 서비스 (엘지니AI 접속 후 아래 서비스 선택 가능)</h2>
+		
+		<div class="system-grid">
+            <!-- 시스템 1 -->
+			<a href="https://app.eaip.lge.com/lgenie/public" class="system-button" target="_blank" >
+                <h2 class="system-title">                
+					<img src="https://github.com/JuhyupKim/JuhyupKim.github.io/blob/main/icon/LGnie.png?raw=true" alt="사외 GPT 모드" class="system-image" height="25">
+					사외 GPT 모드</h2>
+                <p class="system-description">GPT, Gemini, ChatEXAONE 지원</p>
+				
+				<h2 class="sub___title">
+					엘지니AI 이동 후    
+					<img src="https://github.com/JuhyupKim/JuhyupKim.github.io/blob/main/icon/eGPT.png?raw=true" class="system-image" height="20">
+					선택</h2>
+				
+				
+				
+            </a>
+
+            <!-- 시스템 2 -->
+            <a href="https://app.eaip.lge.com/lgenie/" class="system-button" target="_blank" >
+                <h2 class="system-title">
+					<img src="https://github.com/JuhyupKim/JuhyupKim.github.io/blob/main/icon/LGnie.png?raw=true" alt="사내 지식검색" class="system-image" height="20">
+					사내 지식검색</h2>
+                <p class="system-description">LG SS, 시스템 매뉴얼, 제도 등</p>
+				<h2 class="sub___title">
+					엘지니AI 이동 후    
+					<img src="https://github.com/JuhyupKim/JuhyupKim.github.io/blob/main/icon/iGPT.png?raw=true" class="system-image" height="20">
+					선택</h2>
+            </a>
+
+            <!-- 시스템 3 -->
+            <a href="https://app.eaip.lge.com/lgenie/" class="system-button" target="_blank" >               
+                <h2 class="system-title">
+					<img src="https://github.com/JuhyupKim/JuhyupKim.github.io/blob/main/icon/LGnie.png?raw=true" alt="LG Copilot" class="system-image" height="20">
+					LG Copilot</h2>
+                <p class="system-description">내 일정 / 문서 검색</p>
+				<h2 class="sub___title">
+					<img src="https://github.com/JuhyupKim/JuhyupKim.github.io/blob/main/icon/LG_Co.png?raw=true" class="system-image" height="30">
+					</h2>
+            </a>
+
+            <!-- 시스템 4 -->
+            <a href="http://exacode-chat.lge.com:8501/" class="system-button" target="_blank" >                
+                <h2 class="system-title">
+					<img src="https://github.com/JuhyupKim/JuhyupKim.github.io/blob/main/icon/coding.png?raw=true" alt="코딩 EXAONE" class="system-image" width="20">
+					코딩 EXAONE</h2>
+                <p class="system-description">AI  Coding Assistant</p>
+				<h2 class="sub___title">
+					우측 메뉴에서    
+					<img src="https://github.com/JuhyupKim/JuhyupKim.github.io/blob/main/icon/code_bo.png?raw=true" class="system-image" height="22">
+					선택</h2>
+            </a>
+
+            <!-- 시스템 5 -->
+            <a href="https://app.eaip.lge.com/lgenie/" class="system-button" target="_blank" >                
+                <h2 class="system-title">
+					<img src="https://github.com/JuhyupKim/JuhyupKim.github.io/blob/main/icon/transdoc.png?raw=true" alt="번역 TransDoc" class="system-image" height="25">
+					번역 TransDoc</h2>
+                <p class="system-description">Text / 양식 / 파일 번역</p>
+				<h2 class="sub___title">
+					우측 메뉴에서    
+					<img src="https://github.com/JuhyupKim/JuhyupKim.github.io/blob/main/icon/Mun_bo.png?raw=true" class="system-image" height="25">
+					선택</h2>
+            </a>
+
+			<!-- 시스템 6 -->
+            <a href="https://trans.lge.com:9083/meets" class="system-button" target="_blank" >                
+                <h2 class="system-title">
+					<img src="https://github.com/JuhyupKim/JuhyupKim.github.io/blob/main/icon/TransTalk.png?raw=true" alt="통역 TransTalk" class="system-image" height="25">
+					통역 TransTalk</h2>
+                <p class="system-description">실시간 통역, 회의록 요약</p>
+				<h2 class="sub___title">
+					우측 메뉴에서    
+					<img src="https://github.com/JuhyupKim/JuhyupKim.github.io/blob/main/icon/Tong_bo.png?raw=true" class="system-image" height="25">
+					선택</h2>
+            </a>
+			
+			<!-- 시스템 7 -->
+            <a href="https://app.eaip.lge.com/dxp/chat" class="system-button" target="_blank" >                
+                <h2 class="system-title">
+					<img src="https://github.com/JuhyupKim/JuhyupKim.github.io/blob/main/icon/DX.png?raw=true" alt="DXplorer 챗봇" class="system-image" height="25">
+					DXplorer 챗봇</h2>
+                <p class="system-description">전사 DX포탈의 BP / 과제 검색</p>
+				<h2 class="sub___title">
+					우측 메뉴에서    
+					<img src="https://github.com/JuhyupKim/JuhyupKim.github.io/blob/main/icon/DX_bo.png?raw=true" class="system-image" height="20">
+					선택</h2>
+            </a>
+			
+        </div>
+		
+		<h2 class="sub_title"><br>2. Chat EXAONE 및 MS Copilot (MS Copilot은 계약 관계로 향후 서비스 종료 예정)</h2>
+		<div class="system-grid">
+            <!-- 시스템 1 -->
+			<a href="https://lge.exaone.ai/" class="system-button" target="_blank" >
+                <h2 class="system-title">                
+					<img src="https://github.com/JuhyupKim/JuhyupKim.github.io/blob/main/icon/Chat_Exaone.png?raw=true" alt="Chat Exaone" class="system-image" height="25">
+					Chat EXAONE</h2>
+                <p class="system-description">LLM 검색 및 내 파일 내 검색</p>
+				<h2 class="sub___title">
+					Deep 기능 선택 시 추론 지원</h2>
+            </a>
+
+            <!-- 시스템 2 -->
+            <a href="msteams:" class="system-button" target="_blank">
+                <h2 class="system-title">
+					<img src="https://github.com/JuhyupKim/JuhyupKim.github.io/blob/main/icon/MS_Copilot.png?raw=true" alt="MS Copilot" class="system-image" height="25">
+					MS Copilot</h2>
+                <p class="system-description">서비스 종료 예정</p>
+				<h2 class="sub___title">
+					팀즈 → 더보기 → Copilot 선택 </h2>
+            </a>
+			
+
+        </div>
+		<p class="sub__title"><br>※ EXAONE API 관련 문의 : 업무혁신기획팀 전효원 책임 hyowon.jeon@lge.com, LG CNS 김승환 선임 ksh0313@lgcns.com</p>
+		
+		<h2 class="sub_title"><br>3. IC360 고급분석환경 내 생성형AI 서비스 (개인정보 취득 및 분석환경 사용자 이상 권한 획득 필요)</h2>
+		<div class="system-grid">
+            <!-- 시스템 1 -->
+			<a href="https://ic360.lge.com/" class="system-button" target="_blank" >
+                <h2 class="system-title">                
+					<img src="https://github.com/JuhyupKim/JuhyupKim.github.io/blob/main/icon/LLM_P.png?raw=true" alt="LLM Playground" class="system-image" height="25">
+					LLM Playground</h2>
+                <p class="system-description">Open Source LLM 모델 제공</p>
+				<h2 class="sub___title">
+					IC360 화면 우상단    
+					<img src="https://github.com/JuhyupKim/JuhyupKim.github.io/blob/main/icon/Go_bo.png?raw=true" class="system-image" height="20">
+					선택</h2>
+            </a>
+
+            <!-- 시스템 2 -->
+            <a href="https://ic360.lge.com/" class="system-button" target="_blank" >
+                <h2 class="system-title">
+					<img src="https://github.com/JuhyupKim/JuhyupKim.github.io/blob/main/icon/LLM_A.png?raw=true" alt="LLM App Service Builder" class="system-image" height="25">
+					LLM App Service Builder</h2>
+                <p class="system-description">LLM 앱 개발 위한 LangFlow 제공</p>
+				<h2 class="sub___title">
+					IC360 화면 우상단    
+					<img src="https://github.com/JuhyupKim/JuhyupKim.github.io/blob/main/icon/Go_bo.png?raw=true" class="system-image" height="20">
+					선택</h2>
+            </a>
+
+        </div>
+		<p class="sub__title"><br> - IC360 내부에서 LLM 기반 사내 서비스를 개발할 목적으로 사용 가능한 사내 LLM모델인 Exaone 및 Meta, Google, MS 등 Major Vendor들에서 제공하는 Open Source LLM 모델을 제공
+		<br>- 신규 Workspace 생성 신청 또는 기존 Workspace의 멤버로 추가되어 접근 권한 부여된 Workspace 필요
+     	<br>※ 사용 관련 상세 내용 참조 : LLM 개발환경 활용 Collab 게시판</p>
+		
+		<h2 class="sub_title"><br>4.본부 서비스 CHATDA</h2>
+		<div class="system-grid">
+            <!-- 시스템 1 -->
+			<a href="https://chatda.lge.com" class="system-button" target="_blank" >
+                <h2 class="system-title">                
+					<img src="https://github.com/JuhyupKim/JuhyupKim.github.io/blob/main/icon/CHATDA.png?raw=true" alt="인텔리틱스 대시보드" class="system-image" height="25">
+					찾다 (CHATDA)</h2>
+                <p class="system-description">데이터 분석 (정형 Data)</p>
+				<h2 class="sub___title">
+					찾다 내 "데이터분석AI" 선택 </h2>
+            </a>
+            </a>
+
+            <!-- 시스템 2 -->
+            <a href="https://chatda.lge.com" class="system-button" target="_blank" >
+                <h2 class="system-title">
+					<img src="https://github.com/JuhyupKim/JuhyupKim.github.io/blob/main/icon/CHATDA.png?raw=true" alt="IC360" class="system-image" height="25">
+					개발지식 (METIS)</h2>
+                <p class="system-description">개발문서 검색</p>
+				<h2 class="sub___title">
+					찾다 내 "개발정보AI" 선택 </h2>
+            </a>
+			
+			<!-- 시스템 3 -->
+			<a href="" class="system-button" target="_blank">
+                <h2 class="system-title">                
+					<img src="https://github.com/JuhyupKim/JuhyupKim.github.io/blob/main/icon/CHATDA.png?raw=true" alt="인텔리틱스 대시보드" class="system-image" height="25">
+					알다 (ALDA) </h2>
+                <p class="system-description">자료 / 문서 인식 (PoC 중)</p>
+				<h2 class="sub___title">
+					향후 서비스 예정 </h2>
+            </a>
+
+            <!-- 시스템 4 -->
+            <a href="" class="system-button" target="_blank" >
+                <h2 class="system-title">
+					<img src="https://github.com/JuhyupKim/JuhyupKim.github.io/blob/main/icon/CHATDA.png?raw=true" alt="IC360" class="system-image" height="25">
+					DeepReesarch</h2>
+                <p class="system-description">GPT Enterprise (PoC 중)</p>
+				<h2 class="sub___title">
+					향후 서비스 예정 </h2>
+            </a>
+			
+			
+
+        </div>
+		
+		
+		
+		
+    </div>
+</body>
+</html>
